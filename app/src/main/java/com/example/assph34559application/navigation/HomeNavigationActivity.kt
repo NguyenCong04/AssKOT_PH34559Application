@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Person
@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -32,6 +33,7 @@ import com.example.assph34559application.GetLayoutFavorite
 import com.example.assph34559application.GetLayoutHome
 import com.example.assph34559application.GetLayoutNotification
 import com.example.assph34559application.GetLayoutProfile
+import com.example.assph34559application.R
 
 class HomeNavigationActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,10 +87,16 @@ fun GetLayoutHomeNavigation(navHostController: NavHostController) {
                     modifier = Modifier.weight(1f)
                 ) {
                     Icon(
-                        imageVector = Icons.Default.Favorite,
+                        painter = painterResource(
+                            id = if (isSelected === "favorite")
+                                R.drawable.favorite2
+                            else
+                                R.drawable.favorite
+                        ),
+                        tint = if (isSelected === "home") Color(0xff999999)
+                        else Color(0xff242424),
                         contentDescription = null,
-                        tint = if (isSelected === "favorite") Color(0xff242424)
-                        else Color(0xff999999)
+                        modifier = Modifier.size(17.dp, 17.dp)
                     )
                 }
                 IconButton(
